@@ -1,0 +1,1258 @@
+(1).
+
+package com.springAssingment;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class Test {
+	public static void main(String[] args) {
+		
+		ApplicationContext context=new ClassPathXmlApplicationContext("spring.xml");
+		Customer customer= (Customer) context.getBean("customer");
+	    customer.details();
+	}
+
+}
+------------------------------------------------
+package com.springAssingment;
+
+public class Address {
+	
+	private String street;
+	private String city;
+	private String state;
+	private int zip;
+	private String country;
+	
+	public Address(String street, String city, String state, int zip, String country) {
+		super();
+		this.street = street;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+		this.country = country;
+	}
+	
+	public String getStreet() {
+		return street;
+	}
+	public void setStreet(String street) {
+		this.street = street;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+	public void setZip(int zip) {
+		this.zip = zip;
+	}
+	public void setCountry(String country) {
+		this.country = country;
+	}
+	public String getCity() {
+		return city;
+	}
+	public String getState() {
+		return state;
+	}
+	public int getZip() {
+		return zip;
+	}
+	public String getCountry() {
+		return country;
+	} 
+}
+----------------------------------------
+package com.springAssingment;
+
+public class Customer {
+	
+	private int Customerid;
+	private String CustomerName;
+	private int CustomerContact;
+	private String CustomerAddress;
+	private Address address;
+	public Customer(int customerid, String customerName, int customerContact, String customerAddress) {
+		super();
+		Customerid = customerid;
+		CustomerName = customerName;
+		CustomerContact = customerContact;
+		CustomerAddress = customerAddress;
+	}
+	
+
+	public Address getAddress() {
+		return address;
+	}
+
+
+	public void setCustomerid(int customerid) {
+		Customerid = customerid;
+	}
+
+
+	public void setCustomerName(String customerName) {
+		CustomerName = customerName;
+	}
+
+
+	public void setCustomerContact(int customerContact) {
+		CustomerContact = customerContact;
+	}
+
+
+	public void setCustomerAddress(String customerAddress) {
+		CustomerAddress = customerAddress;
+	}
+
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+
+	public int getCustomerid() {
+		return Customerid;
+	}
+	public String getCustomerName() {
+		return CustomerName;
+	}
+	public int getCustomerContact() {
+		return CustomerContact;
+	}
+	public String getCustomerAddress() {
+		return CustomerAddress;
+	}
+	
+	public void details() {
+		System.out.println("CustomerId :"+getCustomerid()+" CustomerName :"+getCustomerName()+" CustomerContact: "+getCustomerContact()+" CustomerAddress:"+getCustomerAddress());
+		System.out.println("Full Address:: "+getAddress().getStreet()+", "+getAddress().getCity()+", "+getAddress().getState()+", "+getAddress().getZip()+", "+getAddress().getCountry());
+
+	}
+
+}
+----------------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+        "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+    <beans >
+            <bean id="customer" class="com.springAssingment.Customer">
+    		<constructor-arg index="0" value="101"/>
+    		<constructor-arg index="1" value="shyam"/>
+    		<constructor-arg index="2" value="94287648"/>
+    		<constructor-arg index="3" value="chandrapur"/>
+     		<constructor-arg index="4" ref="add"/>
+    </bean>
+           <bean id="add" class="com.springAssingment.Address">
+             <constructor-arg index="0" value="	MH MHS9"/>
+    		<constructor-arg index="1" value="Nagpur"/>
+    		<constructor-arg index="2" value="Maharashtra"/>
+    		<constructor-arg index="3" value="4400002"/>
+     		<constructor-arg index="4" ref="India"/> 
+           </bean>
+    
+    			<!-- By using setter -->
+    
+    <!-- 
+    		<bean id="customer" class="com.springAssingment.Customer">
+   			 <property name="Customerid" value="101"/>
+   		      <property name="CustomerName" value="shyam"/>
+		 	  <property name="CustomerContact" value="93746838"/>
+   		      <property name="CustomerAddress" value="chandrapur"/>
+   			<property  name="address" ref="add"/>   
+   		</bean>
+   		 <bean id="add" class="com.springAssingment.Address">
+   		 		    <property name="street" value="MH MSH9"/>
+   		 	       	<property name="city" value="Nagpur"/>
+    		 		<property name="state" value="Maharashtra"/>
+    		 		<property name="zip" value="4400002"/>
+    		 		<property name="country" value="India"/>
+   		 	    
+   		 </bean>
+     -->
+   		 
+     </beans>
+------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------
+(2).
+package com.springassignment2;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+public class Question {
+	private int questionId;
+	private String question;
+     //private List<String> answer;
+   //  private Set<String> answer;
+   private Map<Integer, String>  answer;
+     
+	public int getQuestionId() {
+		return questionId;
+	}
+	public void setQuestionId(int questionId) {
+		this.questionId = questionId;
+	}
+	public String getQuestion() {
+		return question;
+	}
+	public void setQuestion(String question) {
+		this.question = question;
+	}
+	
+	/*
+	public List<String> getAnswer() {
+		return answer;
+	}
+	public void setAnswer(List<String> answer) {
+		this.answer = answer;
+	}
+    
+	
+	public Set<String> getAnswer() {
+		return answer;
+	}
+	public void setAnswer(Set<String> answer) {
+		this.answer = answer;
+	}
+	*/
+	
+	public void print() {
+		System.out.println("QuestionId: "+getQuestionId()+", Question: "+getQuestion()+", Answer:"+getAnswer());
+	}
+	public Map<Integer, String> getAnswer() {
+		return answer;
+	}
+	public void setAnswer(Map<Integer, String> answer) {
+		this.answer = answer;
+	}
+	
+}
+----------------------------------------------------
+package com.springassignment2;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class Test {
+	public static void main(String[] args) {
+		
+		ApplicationContext context=new ClassPathXmlApplicationContext("spring.xml");
+		Question question=(Question) context.getBean("question");
+		question.print();
+	}
+
+}
+-----------------------------------------------------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+        "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+ <beans>
+ 	<bean id="question" class="com.springassignment2.Question">
+ 			<property name="questionId" value="11"/>
+ 			<property name="question" value="India's top 3 cities?"/>
+ 			
+ 			
+ 			<!-- 
+ 				<property name="answer">
+ 			<list>
+ 			     <value>"Mumbai"</value> 
+ 			     <value>"Bengaluru"</value>    
+  			     <value>"Delhi"</value>    
+ 			</list>
+ 			</property>
+ 			 -->
+ 			 
+ 			 <!-- 
+ 			 	<property name="answer">
+ 			<set>
+ 			     <value>"Mumbai"</value> 
+ 			     <value>"Bengaluru"</value>    
+  			     <value>"Delhi"</value>    
+ 			</set>
+ 			</property> 
+ 			  -->
+ 			  
+ 			  <property name="answer">
+ 			 <map>
+  			    <entry key="1" value="Mumbai"/>		 
+   			    <entry key="2" value="Bengaluru"/>		 
+   			    <entry key="3" value="Delhi"/>		 
+ 			 
+ 			 </map>
+   
+ 			
+ 			</property>
+ 		
+ 	</bean>
+ 	
+ 
+ </beans>
+--------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+
+(3).
+
+Banking 
+
+ActBank.java
+
+package com.java.bank;
+
+public class ActBank {
+
+	public int accountId;
+	public String accountHolderName;
+	public String accountType;
+	public long accountBalance;
+	public int getAccountId() {
+		return accountId;
+	}
+	public void setAccountId(int accountId) {
+		this.accountId = accountId;
+	}
+	public String getAccountHolderName() {
+		return accountHolderName;
+	}
+	public void setAccountHolderName(String accountHolderName) {
+		this.accountHolderName = accountHolderName;
+	}
+	public String getAccountType() {
+		return accountType;
+	}
+	public void setAccountType(String accountType) {
+		this.accountType = accountType;
+	}
+	public long getAccountBalance() {
+		return accountBalance;
+	}
+	public void setAccountBalance(long accountBalance) {
+		this.accountBalance = accountBalance;
+	}
+	
+	  public void showBankAccountDetails(){
+	        System.out.println("Account Id : " + accountId);
+	        System.out.println("Account Holder Name : " + accountHolderName);
+	        System.out.println("AccountType : " + accountType);
+	        System.out.println("AccountBalance : " + accountBalance);
+
+	    }	
+}
+-------------------------------------------------------------------------------------
+ActBankR.java
+package com.java.bank;
+
+public interface ActBankR{
+
+	public double getBalance(long accountId);
+	public double updateBalance(long accountId, double newBalance);	
+}
+----------------------------------------------------------------------------------------
+BankActRImpl.java
+
+package com.java.bank;
+public abstract class BankActRImpl implements ActBankR {
+	
+	private void BankAccRepositoryImpl(){
+	  ActBank bankaccount = new ActBank();
+	  bankaccount.setAccountHolderName("Mounika");
+	  bankaccount.setAccountId(65);
+	  bankaccount.setAccountType("Savings");
+	  bankaccount.setAccountBalance((long) 20345.5);
+
+
+	}
+}
+
+-----------------------------------------------------------------------------------------
+BankAccService.java
+
+package com.java.bank;
+
+public interface BankAccService {
+public double withdraw(long accountId, double balance);
+public double deposit(long accountId, double balance);
+public double getBalance(long accountId);
+public boolean fundTransfer(long fromAccount, long toAccount, double account);
+
+}
+-------------------------------------------------------------------------------------------
+BankAccServiceImpl.java
+
+package com.java.bank;
+
+public abstract class BankAccServiceImpl implements BankAccService{
+	long accountId;
+	double balance;
+	long fromAccount;
+	long toAccount;
+	double account;
+	
+	public void withdraw() {
+		System.out.println("AccounntId" +accountId);
+		System.out.println("Balance" +balance);
+	}
+	
+	public void balance() {
+		System.out.println("AccounntId" +accountId);
+		System.out.println("Balance" +balance);
+	}
+	
+	public void deposit() {
+		System.out.println("AccounntId" +accountId);
+		System.out.println("Balance" +balance);
+	}
+	
+	public void fundTransfer() {
+		System.out.println("AccounntId" +accountId);
+		System.out.println("Balance" +balance);
+	}
+	
+	
+}
+---------------------------------------------------------------------
+ActBankC.java
+
+package com.java.bank;
+
+public class ActBankC{
+
+	
+	BankAccServiceImpl bankaccountS = new BankAccServiceImpl() {
+		
+		public double withdraw(long accountId, double balance) {
+			
+			return withdraw(15000,1500);
+		}
+		
+		public double getBalance(long accountId) {
+			
+			return getBalance(150);
+		}
+		
+		public boolean fundTransfer(long fromAccount, long toAccount, double aount) {
+			
+			return false;
+		}
+		
+		public double deposit(long accountId, double balance) {
+		
+			return deposit(15000, 1500);
+		}
+	};
+
+	public void withdraw() {
+		
+		return;
+	}
+	
+	
+}
+-----------------------------------------------------------------------------------------------------------
+one.java
+
+package com.java.bank;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;  
+
+
+public class one
+{
+    public static void main( String[] args )
+    {
+    	ApplicationContext applicationcontext=new ClassPathXmlApplicationContext("applicationC.xml");  
+        ActBankC obj=(ActBankC)applicationcontext.getBean("obj");  
+        obj.withdraw();     
+        }
+}
+-----------------------------------------------------------------------------------------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans  
+    
+xmlns="http://www.springframework.org/schema/beans"  
+    
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    
+xmlns:p="http://www.springframework.org/schema/p"  
+    
+xsi:schemaLocation="http://www.springframework.org/schema/beans   
+
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">  
+ 
+ 
+<!-- <bean id="b" class="com.Auowire.Auowire.BankAccountController"></bean>   
+-->
+<bean id="obj" class="com.java.bank.BankAccountController" autowire="byName">
+</bean>  
+  
+
+</beans>  
+
+---------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+(4).
+
+package com.spring.required;
+
+import org.springframework.beans.factory.annotation.Required;
+
+public class Employee {
+
+	private String name;	
+	private String designation;
+	private String company;
+
+	@Required
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getName() {
+		return name;
+	}
+
+	@Required
+	public void setDesignation(String designation) {
+		this.designation = designation;
+	}
+	public String getDesignation() {
+		return designation;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+	public String getCompany() {
+		return company;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [name=" + name + ", designation=" + designation + ", company=" + company + "]";
+	}
+}
+//app main
+package com.spring;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.spring.Employee;
+
+public class AppMain {
+
+	@SuppressWarnings("resource")
+	public static void main(String[] args) {		
+		ApplicationContext ac = new ClassPathXmlApplicationContext("required-annotation.xml");
+
+		Employee emp = ac.getBean("myemployee", Employee.class);
+		System.out.println(emp.toString());
+	}
+}
+-----------------------------------------------------------------------------------
+//bean.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- Used to activate the @Required annotation in Spring -->
+	<context:annotation-config />
+
+	<bean id="myemployee" class="com.spring.Employee">
+		<!-- Required property -->
+		<property name="name" value="Charlotte O' Neil" />
+		<!-- Required property -->
+		<property name="designation" value="Technical Leader" />
+		<property name="company" value="Test Ltd." />
+	</bean>
+</beans>
+------------------------------------------------------------------------------
+package com.spring.inject;
+
+import javax.inject.Inject;
+
+public class Employee {
+
+ private String name;
+ private int age;
+
+ @Inject
+ private Address address;
+
+ public Employee() {
+
+ }
+
+ public String getName() {
+  return name;
+ }
+
+ public void setName(String name) {
+  this.name = name;
+ }
+
+ public int getAge() {
+  return age;
+ }
+
+ public void setAge(int age) {
+  this.age = age;
+ }
+
+ public Address getAddress() {
+  return address;
+ }
+
+ public void setAddress(Address address) {
+  this.address = address;
+ }
+
+}
+
+
+
+
+//Address  as Injected into Employee
+
+package com.spring.inject;
+
+
+public class Address {
+
+ private String street;
+ private String city;
+ private String state;
+
+ public Address() {
+
+ }
+
+
+ public String getStreet() {
+  return street;
+ }
+
+
+ public void setStreet(String street) {
+  this.street = street;
+ }
+
+
+ public String getCity() {
+  return city;
+ }
+
+
+ public void setCity(String city) {
+  this.city = city;
+ }
+
+
+ public String getState() {
+  return state;
+ }
+
+
+ public void setState(String state) {
+  this.state = state;
+ }
+
+}
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+ xmlns:context="http://www.springframework.org/schema/context"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+ <bean
+  class="org.springframework.beans.factory.
+annotation.AutowiredAnnotationBeanPostProcessor">
+ </bean>
+
+ <bean id="employee" class="com.spring.inject.Employee">
+
+  <property name="age" value="28" />
+  <property name="name" value="Jonty" />
+
+
+ </bean>
+
+ <bean id="address" class="com.spring.inject.Address">
+
+  <property name="street" value="Town Hall Street" />
+  <property name="city" value="Pune" />
+  <property name="state" value="Maharashtra"></property>
+ </bean>
+
+</beans>
+------------------------------------------------------------------------------------
+package com.spring.resource;
+ 
+public class Company {
+ 
+    private String name;
+    private String location;
+ 
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getLocation() {
+        return location;
+    }
+    public void setLocation(String location) {
+        this.location = location;
+    }
+ 
+    @Override
+    public String toString() {
+        return "Company [name=" + name + ", location=" + location + "]";
+    }
+}
+package com.spring.resource;
+ 
+import javax.annotation.Resource;
+ 
+public class Employee {
+ 
+    private String id;
+    private String name;
+ 
+    @Resource(name="mycompany")
+    private Company company;
+ 
+    public String getId() {
+        return id;
+    }
+    public void setId(String id) {
+        this.id = id;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public Company getCompany() {
+        return company;
+    }
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+ 
+    @Override
+    public String toString() {
+        return "Employee [id=" + id + ", name=" + name + ", company=" + company.toString() + "]";
+    }
+}
+//main method
+
+package com.spring.util;
+ 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+ 
+import com.spring.Employee;
+ 
+public class AppMain {
+ 
+    @SuppressWarnings("resource")
+    public static void main(String[] args) {
+ 
+        ApplicationContext ac = new ClassPathXmlApplicationContext("resource-annotation.xml");
+ 
+        Employee emp = ac.getBean("myemployee", Employee.class);
+        System.out.println(emp.toString());
+    }
+}
+//bean xml
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+ 
+    <!-- To activate the '@Resource' annotation in the spring framework -->
+    <context:annotation-config />
+ 
+    <bean id="mycompany" class="com.spring.Company">
+        <property name="name" value="Test Pvt. Ltd." />
+        <property name="location" value="India" />
+    </bean>
+ 
+    <bean id="myemployee" class="com.spring.Employee">
+        <property name="id" value="123456" />
+        <property name="name" value="Charlotte O' Neil" />
+    </bean>
+</beans>
+---------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+
+(6).
+
+Main.java
+
+package com.java.org;
+
+import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+@Configuration
+@PropertySource("classpath:app.properties")
+@SpringBootConfiguration
+public class Main {
+
+	public static void main(String[] args) {
+		
+		
+
+		ClassPathXmlApplicationContext context=new ClassPathXmlApplicationContext("bean.xml");
+		
+		
+		Service s= (Service)context.getBean("service");
+		
+		s.Show();
+		
+	
+		
+
+	}
+
+}
+
+Service.java
+
+package com.java.org;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+
+@Component
+public class Service {
+	
+	
+	@Value("${classurl}")
+	private String url;
+	
+	@Value("${classusername}")
+	private String username;
+	
+	@Value("${classpassword}")
+	private String pass;
+	
+	
+	
+public void Show()
+{
+	System.out.println("url ="+url+", Username= " +username+ " ,Passoword= "+pass);
+	
+}
+	
+
+}
+
+----------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+(7).
+
+Demo.java
+
+package com.java.spel;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+@Component
+public class Demo {
+	
+	@Value("#{ 22+11 }")
+	private int x;
+	
+	@Value("#{ 20 }")
+	private int y;
+	public int getX() {
+		return x;
+	}
+	public void setX(int x) {
+		this.x = x;
+	}
+	public int getY() {
+		return y;
+	}
+	public void setY(int y) {
+		this.y = y;
+	}
+	@Override
+	public String toString() {
+		return "Demo [x=" + x + ", y=" + y + "]";
+	}
+	
+	
+}
+----------------------------------------------------------------------
+Test.java
+
+package com.java.spel;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("com/java/spel/bean.xml");
+		Demo d1 = context.getBean("demo",Demo.class);
+		
+		System.out.println(d1);
+
+	}
+
+}
+----------------------------------------------------------------------------------
+bean.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  
+    xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"  
+    xmlns:p="http://www.springframework.org/schema/p"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans   
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    
+  <context:component-scan base-package="com.springcore.spel" />
+   
+</beans>
+
+-----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+(8)
+
+Person.java
+
+package com.java.bean;
+
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
+ 
+public class Person implements DisposableBean, InitializingBean {
+ 
+    private String name;
+ 
+    Person() {
+        System.out.println("Constructor of person bean is invoked!");
+    }
+ 
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+ 
+    //Bean initialization code
+    public void afterPropertiesSet() throws Exception {
+        System.out.println("Initializing method of person bean is invoked!");
+    }
+ 
+    //Bean destruction code
+    public void destroy() throws Exception {
+        System.out.println("Destroy method of person bean is invoked!");
+    }
+}
+
+-------------------------------------------------------------------------------------------
+Test.java
+
+package com.java.bean;
+
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		ConfigurableApplicationContext   context = new ClassPathXmlApplicationContext("com/java/bean/bean.xml");
+		 
+        Person myperson = context.getBean("personBean", Person.class);
+ 
+        System.out.println("Name= " + myperson.getName());
+ 
+        // Closing the context object.
+        context.close();
+    }
+}
+
+
+Bean.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  
+    xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"  
+    xmlns:p="http://www.springframework.org/schema/p"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans   
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    
+    
+    
+    <bean name="personBean" class="com.java.bean.Person">
+        <property name="name" value="Tom" />
+    </bean>
+    
+    
+ </beans>
+----------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+(9).
+
+Example.java
+
+package com.java.lifecycle;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
+public class Example {
+	private String subject;
+
+	public String getSubject() {
+		return subject;
+	}
+
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+
+	public Example() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String toString() {
+		return "Example [subject=" + subject + "]";
+	}
+	
+	@PostConstruct
+	public void start() {
+		System.out.println("starting method");
+	}
+	
+	@PreDestroy
+	public void end() {
+		System.out.println("ending method");
+		
+	}
+
+}
+-----------------------------------------------------------------------------
+Test.java
+
+package com.java.lifecycle;
+
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class Test {
+
+	public static void main(String[] args) {
+		
+		AbstractApplicationContext context = new ClassPathXmlApplicationContext("com/java/lifecycle/bean.xml");
+		
+		context.registerShutdownHook();
+		
+		Example example=(Example) context.getBean("example");
+		System.out.println(example);
+		
+
+	}
+
+}
+----------------------------------------------------------------------------------
+bean.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  
+    xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"  
+    xmlns:p="http://www.springframework.org/schema/p"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans   
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    <context:annotation-config />
+    
+    
+    <bean class="com.bean.lifecycle.Example" name="example">
+         <property name="subject" value="Maths" />
+    </bean>
+    
+    
+ </beans>
+------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+(10).
+App.java
+
+package com.java.org;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class App {
+
+	public static void main(String[] args) {
+
+		ApplicationContext context = new ClassPathXmlApplicationContext("bean.xml");
+
+		Applicationclass n = (Applicationclass) context.getBean("noob");
+
+		n.walk();
+
+		Build a = (Build) context.getBean("pro");
+		a.Slow();
+
+	}
+
+}
+-------------------------------------------------------------------------------------------
+Application.java
+
+package com.java.org;
+
+public class Application {
+
+	public void go() {
+
+		System.out.println("Groot");
+	}
+
+}
+-------------------------------------------------------------------------------------------
+ApplicationClass.java
+
+package com.java.org;
+
+public class Applicationclass {
+
+	public void walk() {
+
+		System.out.println("Hulk Walk");
+	}
+
+	
+}
+---------------------------------------------------------------------------------------------
+Build.java
+
+package com.java.org;
+
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+
+public class Build implements ApplicationContextAware {
+
+	private ApplicationContext context;
+
+	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+		context = applicationContext;
+	}
+
+	public void Slow() {
+
+		Application a = (Application) context.getBean("app");
+
+		a.go();
+
+	}
+
+}
+------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
